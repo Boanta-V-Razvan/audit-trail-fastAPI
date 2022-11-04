@@ -1,38 +1,42 @@
+from dotenv import load_dotenv
 from fastapi import FastAPI
-from pydantic import BaseModel
-from datetime import datetime
+from fastapi_utils.cbv import cbv
+from fastapi_utils.inferring_router import InferringRouter
 
+from models.auditmodel import AuditModel
+from storage.storage import Storage
+
+load_dotenv()
 app = FastAPI()
+router = InferringRouter()
 
 
-class Audit(BaseModel):
-    id: int
-    date_created: datetime
-    content: str
+@cbv(router)
+class AuditController:
+    def __init__(self):
+        self.storage = Storage()
+
+    @router.get("/")
+    def read_root(self):
+        return {"Hello": "World"}
 
 
-store = {1: Audit(id=1, date_created=datetime.utcnow(), content="first audit")}
+    @router.get("/audit/{audit_id}")
+    def read_audit(self,audit_id: int):
+        try:
+            return  self.storage._get_audit(audit_id)
+        except KeyError:
+            return None
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+    @router.get("/audit/")
+    def read_all_audit(self):
+        return self.storage._list_audit()
 
 
-@app.get("/audit/{audit_id}")
-def read_audit(audit_id: int):
-    try:
-        return store[audit_id]
-    except KeyError:
-        return None
+    @router.post("/audit/")
+    def create_audit(self, audit: AuditModel):
+        self.storage._create_audit()
+        return audit
 
-
-@app.get("/audit/")
-def read_all_audit():
-    return list(store.values())
-
-
-@app.post("/audit/")
-def create_audit(audit: Audit):
-    store[audit.id] = audit
-    return audit
+app.include_router(router)
