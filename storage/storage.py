@@ -12,18 +12,16 @@ class Storage:
         client = MongoClient(settings.mongodb_uri)
         self.db = client["audit-trail"]
 
-    def _create_audit(self):
-        data = AuditModel(id=2, date_created=datetime.utcnow(), content="first audit")
-        data_dict = dict(data)
+    def create_audit(self, audit):
+        data_dict = dict(audit)
         self.db.audit.insert_one(data_dict)
-        return data
 
-    def _list_audit(self):
+    def list_audit(self):
         data = list(self.db.audit.find())
         data = parse_obj_as(list[AuditModel], data)
         return data
 
-    def _get_audit(self, _id):
+    def get_audit(self, _id):
         data = self.db.audit.find_one({"id": _id})
         data = parse_obj_as(AuditModel, data)
         return data
