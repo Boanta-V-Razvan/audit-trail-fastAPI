@@ -1,0 +1,1666 @@
+[
+    {
+        "BaseUrl": "{0}://objectdetection-ui.{1}",
+        "Name": "ObjectDetectionModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "ObjectDetection",
+                "DisplayName": "Object detection",
+                "Type": "UI",
+                "RequiredParameters": "ObjectDetection.json",
+                "AutoExecution":
+                {
+                    "ModuleUrlTemplate": "{0}://objectdetection-algo.{1}",
+                    "SubmoduleUrlTemplate": "{0}/api/v1/execute"
+                },
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Detections",
+                        "DisplayName": "Detections",
+                        "ResourceKeySelectors": 
+                        [
+                            "detections_[0-9]+$",
+                            "^detections_metadata$"
+                        ]
+                    },
+                    {
+                        "Name": "Template",
+                        "DisplayName": "Image template",
+                        "ResourceKeySelectors": 
+                        [
+                            "^template$",
+                            "^template_metrix$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://mlobjectdetection-ui.{1}",
+        "Name": "MLObjectDetectionModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "MLObjectDetection",
+                "DisplayName": "Object detection (ML)",
+                "Type": "UI",
+                "RequiredParameters": "MLObjectDetection.json",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Detections",
+                        "DisplayName": "Detections",
+                        "ResourceKeySelectors": 
+                        [
+                            "detections_[0-9]+$",
+                            "^detections_metadata$"
+                        ]
+                    },
+                    {
+                        "Name": "Template",
+                        "DisplayName": "Image template",
+                        "ResourceKeySelectors": 
+                        [
+                            "^template$",
+                            "^template_metrix$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://tiltproximities-ui.{1}",
+        "Name": "ProximitiesModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "Proximities",
+                "DisplayName": "Proximities",
+                "Type": "UI",
+                "CanSkip": true,
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Proximities",
+                        "DisplayName": "Proximities",
+                        "ResourceKeySelectors": 
+                        [
+                            "^raw_proximities_con$",
+                            "^raw_proximities_cen$",
+                            "^slice_proximities_cen_[0-9]+$",
+                            "^slice_proximities_con_[0-9]+$",
+                            "^slice_channels_[0-9]+$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Proximities",
+                        "DisplayName": "Proximities contours range",
+                        "ResourceKeySelectors": 
+                        [
+                            "^proximities_range_con$",
+                            "^proximities_range_cen$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "SplitAnnotation",
+                "DisplayName": "Split annotations",
+                "Type": "UI",
+                "CanSkip": true,
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Splitters",
+                        "DisplayName": "Splitter",
+                        "ResourceKeySelectors": 
+                        [
+                            "^splitters$"
+                        ]
+                    },
+                    {
+                        "Name": "TiltSubsMethod",
+                        "DisplayName": "Tilt substraction method",
+                        "ResourceKeySelectors": 
+                        [
+                            "^tilt_substract_method$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "TiltMeasurements",
+                "DisplayName": "Tilt measurements",
+                "Type": "UI",
+                "CanSkip": true,
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Channels",
+                        "DisplayName": "Channels metadata",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channels_metadata$"
+                        ]
+                    },
+                    {
+                        "Name": "ChannelStats",
+                        "DisplayName": "Channel statistic",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_stats$"
+                        ]
+                    },
+                    {
+                        "Name": "ChannelTilts",
+                        "DisplayName": "Channel tilts",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_tilts$"
+                        ]
+                    },
+                    {
+                        "Name": "RDisp",
+                        "DisplayName": "Radius displacements",
+                        "ResourceKeySelectors": 
+                        [
+                            "^r_displacements$"
+                        ]
+                    },
+                    {
+                        "Name": "Splitters",
+                        "DisplayName": "Splitter",
+                        "ResourceKeySelectors": 
+                        [
+                            "^splitters$"
+                        ]
+                    },
+                    {
+                        "Name": "TiltSubsMethod",
+                        "DisplayName": "Tilt substraction method",
+                        "ResourceKeySelectors": 
+                        [
+                            "^tilt_substract_method$"
+                        ]
+                    },
+                    {
+                        "Name": "Proximities",
+                        "DisplayName": "Proximities",
+                        "ResourceKeySelectors": 
+                        [
+                            "^raw_proximities_con$",
+                            "^raw_proximities_cen$",
+                            "^slice_proximities_cen_[0-9]+$",
+                            "^slice_proximities_con_[0-9]+$",
+                            "^slice_channels_[0-9]+$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://contourextraction-ui.{1}",
+        "Name": "ContourExtractionModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "ContourExtraction",
+                "DisplayName": "Contours extraction",
+                "Type": "UI",
+                "RequiredParameters": "ContourExtraction.json",
+                "AutoExecution":
+                {
+                    "ModuleUrlTemplate": "{0}://contourextraction-algo.{1}",
+                    "SubmoduleUrlTemplate": "{0}/api/v1/execute"
+                },
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Detections",
+                        "DisplayName": "Detections",
+                        "ResourceKeySelectors": 
+                        [
+                            "detections_[0-9]+$",
+                            "^detections_metadata$"
+                        ]
+                    },
+                    {
+                        "Name": "Template",
+                        "DisplayName": "Image template",
+                        "ResourceKeySelectors": 
+                        [
+                            "^template$",
+                            "^template_metrix$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Contours",
+                        "DisplayName": "Contours",
+                        "ResourceKeySelectors": 
+                        [
+                            "^contours_metadata$",
+                            "^contours_[0-9]+$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://segmenttocontour-algo.{1}",
+        "Name": "SegmentToContoursModuleALGO",
+        "Submodules":
+        [
+            {
+                "Name": "SegmentToContour",
+                "DisplayName": "Segment to contour",
+                "UrlTemplate":"{0}/api/v1/execute",
+                "Type": "Algo",
+                "RequiredParameters": "SegmentToContour.json",
+                "InputDatasetTypes":
+                [
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Detections",
+                        "DisplayName": "Detections",
+                        "ResourceKeySelectors":
+                        [
+                            "detections_[0-9]+$",
+                            "^detections_metadata$"
+                        ]
+                    },
+                    {
+                        "Name": "TFS Model",
+                        "DisplayName": "Id of selected TFS model",
+                        "ResourceKeySelectors":
+                        [
+                            "^model_id$"
+                        ]
+                    },
+                    {
+                        "Name": "SegmentedDatasetId",
+                        "DisplayName": "Id of segmented dataset output",
+                        "ResourceKeySelectors":
+                        [
+                            "^segmented_dataset_id$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Contours",
+                        "DisplayName": "Contours",
+                        "ResourceKeySelectors":
+                        [
+                            "^contours_metadata$",
+                            "^contours_[0-9]+$"
+                        ]
+                    },
+                    {
+                        "Name": "Films",
+                        "DisplayName": "Films",
+                        "ResourceKeySelectors":
+                        [
+                            "^films_metadata$",
+                            "^films_[0-9]+$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://deepsegmentation-ui.{1}",
+        "Name": "DeepSegmentationModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "FilmSegmentation",
+                "DisplayName": "Film segmentation",
+                "Type": "UI",
+                "RequiredParameters": "DeepSegmentation.json",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Detections",
+                        "DisplayName": "Detections",
+                        "ResourceKeySelectors": 
+                        [
+                            "detections_[0-9]+$",
+                            "^detections_metadata$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "TFS Model",
+                        "DisplayName": "Id of selected TFS model",
+                        "ResourceKeySelectors":
+                        [
+                            "^model_id$"
+                        ]
+                    },
+                    {
+                        "Name": "SegmentedDatasetId",
+                        "DisplayName": "Id of segmented dataset output",
+                        "ResourceKeySelectors":
+                        [
+                            "^segmented_dataset_id$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://channeltracing-algo.{1}",
+        "Name": "ChannelTracingModuleALGO",
+        "Submodules":
+        [
+            {
+                "Name": "ChannelTracing",
+                "DisplayName": "Channel tracing",
+                "UrlTemplate":"{0}/api/v1/execute",
+                "Type": "Algo",
+                "RequiredParameters": "ChannelTracing.json",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Contours",
+                        "DisplayName": "Contours",
+                        "ResourceKeySelectors": 
+                        [
+                            "^contours_metadata&",
+                            "^contours_[0-9]+$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Channels",
+                        "DisplayName": "Channels info",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_[0-9]+$",
+                            "^channels_metadata$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://channelfinealignment-algo.{1}",
+        "Name": "ChannelFineAlignmentModuleALGO",
+        "Submodules":
+        [
+            {
+                "Name": "ChannelFineAlignment",
+                "DisplayName": "Fine alignment",
+                "UrlTemplate": "{0}/api/v1/execute",
+                "Type": "Algo",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Channels",
+                        "DisplayName": "Channels info",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_[0-9]+$",
+                            "^channels_metadata$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Channels",
+                        "DisplayName": "Channels info",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_[0-9]+$",
+                            "^channels_metadata$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://channelmeasurements-algo.{1}",
+        "Name": "MeasurementsExtractionModuleALGO",
+        "Submodules":
+        [
+            {
+                "Name": "MeasurementsExtraction",
+                "DisplayName": "Measurements extraction",
+                "UrlTemplate": "{0}/api/v1/execute",
+                "Type": "Algo",
+                "RequiredParameters": "MeasurementsExtraction.json",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Channels",
+                        "DisplayName": "Channels info",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_[0-9]+$",
+                            "^channels_metadata$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "MeasurmentResults",
+                        "DisplayName": "Measured radiuses",
+                        "ResourceKeySelectors": 
+                        [
+                            "^radius_[0-9]+$",
+                            "^ellipticity_[0-9]+$",
+                            "^centroid_[0-9]+$",
+                            "^area_[0-9]+$"
+                        ]
+                    },
+                    {
+                        "Name": "ChannelStats",
+                        "DisplayName": "Channel statistic",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_stats$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "ProximitiesCalculation",
+                "DisplayName": "Proximities Calculation",
+                "UrlTemplate": "{0}/api/v1/executeProximitiesCalculation",
+                "Type": "Algo",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Channels",
+                        "DisplayName": "Channels info",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_[0-9]+$",
+                            "^channels_metadata$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [   
+                    {
+                        "Name": "Proximities",
+                        "DisplayName": "Proximities",
+                        "ResourceKeySelectors": 
+                        [
+                            "^raw_proximities_con$",
+                            "^raw_proximities_cen$",
+                            "^slice_proximities_cen_[0-9]+$",
+                            "^slice_proximities_con_[0-9]+$",
+                            "^slice_channels_[0-9]+$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "TiltCalculation",
+                "DisplayName": "Tilt calculation",
+                "UrlTemplate": "{0}/api/v1/executeTiltMeasurements",
+                "Type": "Algo",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Splitters",
+                        "DisplayName": "Splitter",
+                        "ResourceKeySelectors":
+                        [
+                            "^splitters$"
+                        ]
+                    },
+                    {
+                        "Name": "TiltSubsMethod",
+                        "DisplayName": "Tilt substraction method",
+                        "ResourceKeySelectors": 
+                        [
+                            "^tilt_substract_method$"
+                        ]
+                    },
+                    {
+                        "Name": "Channels",
+                        "DisplayName": "Channels info",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_[0-9]+$",
+                            "^channels_metadata$"
+                        ]
+                    }
+                ],
+                 "OutputResources":
+                [
+                    {
+                        "Name": "ChannelTilts",
+                        "DisplayName": "Channel tilts",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_tilts$"
+                        ]
+                    },
+                    {
+                        "Name": "RDisp",
+                        "DisplayName": "Radius displacements",
+                        "ResourceKeySelectors": 
+                        [
+                            "^r_displacements$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://channelmeshgeneration-algo.{1}",
+        "Name": "MeshGenerationModuleALGO",
+        "Submodules": 
+        [
+            {
+                "Name": "MeshGeneration",
+                "DisplayName": "Mesh generation",
+                "UrlTemplate": "{0}/api/v1/execute",
+                "Type": "Algo",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Channels",
+                        "DisplayName": "Channels info",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_[0-9]+$",
+                            "^channels_metadata$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Meshes",
+                        "DisplayName": "Meshes",
+                        "ResourceKeySelectors": 
+                        [
+                            "^mesh_[0-9]+$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://measurements-ui.{1}",
+        "Name": "VisualizationModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "3dVisualization",
+                "DisplayName": "Measurements results",
+                "Type": "UI",
+                "CanSkip": true,
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Meshes",
+                        "DisplayName": "Meshes",
+                        "ResourceKeySelectors": 
+                        [
+                            "^mesh_[0-9]+$"
+                        ]
+                    },
+                    {
+                        "Name": "ChannelStats",
+                        "DisplayName": "Channel statistic",
+                        "ResourceKeySelectors": 
+                        [
+                            "^channel_stats$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://careareaselection-ui.{1}",
+        "Name": "CareAreaSelectionModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "CareAreaSelection",
+                "DisplayName": "ROI Selection",
+                "Type": "UI",
+                "RequiredParameters": "CareAreaSelection.json",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Annotations",
+                        "DisplayName": "Annotations",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^CareAreaAnnotations$",
+                            "^ExcludedAreaAnnotations$"
+                        ]
+                    },
+                    {
+                        "Name": "SampleArea",
+                        "DisplayName": "Sample area",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^MFOVSamples$"
+                        ]
+                    },
+                    {
+                        "Name": "ExcludedArea",
+                        "DisplayName": "Excluded area",
+                        "ResourceKeySelectors" : 
+                        [ 
+                            "^MFOVExcluded$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "DatasetPreview",
+                "DisplayName": "Dataset preview",
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat"
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://d2db-ui.{1}",
+        "Name": "D2dbModuleUI",
+        "RequiredParameters": "D2DB.json",
+        "Submodules":
+        [
+            {
+                "Name": "D2dbLayout",
+                "DisplayName": "Layout selection",
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat"
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "LayoutSettings",
+                        "DisplayName": "Layout settings",
+                        "ResourceKeySelectors": 
+                        [
+                            "^layout_settings$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "D2dbAlignment",
+                "DisplayName": "D2dbAlignment",
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "LayoutSettings",
+                        "DisplayName": "Layout settings",
+                        "ResourceKeySelectors": 
+                        [
+                            "^layout_settings$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "AlignmentSettings",
+                        "DisplayName": "Layout alignment settings",
+                        "ResourceKeySelectors": 
+                        [
+                            "^landmark_alignment_settings$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "D2dbLithography",
+                "DisplayName": "Lithography emulation",
+                "Type": "UI",
+                "RequiredParameters": "LithographyEmulation.json",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat"
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "CalibrationParams",
+                        "DisplayName": "Calibration parameters",
+                        "ResourceKeySelectors": 
+                        [
+                            "^calibration_params$"
+                        ]
+                    },
+                    {
+                        "Name": "Biases",
+                        "DisplayName": "Biases",
+                        "ResourceKeySelectors": 
+                        [
+                            "^cd_biases$"
+                        ]
+                    },
+                    {
+                        "Name": "DensityBiases",
+                        "DisplayName": "Density biases",
+                        "ResourceKeySelectors": 
+                        [
+                            "^density_biases$"
+                        ]
+                    },
+                    {
+                        "Name":"ScalesParameters",
+                        "DisplayName": "Scales parameters",
+                        "ResourceKeySelectors": 
+                        [
+                            "^scales_params$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "D2dbSemCalibration",
+                "DisplayName": "SEM emulation",
+                "Type": "UI",
+                "RequiredParameters": "SEMEmulation.json",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "LayoutSettings",
+                        "DisplayName": "Layout settings",
+                        "ResourceKeySelectors": 
+                        [
+                            "^layout_settings$"
+                        ]
+                    },
+                    {
+                        "Name": "AlignmentSettings",
+                        "DisplayName": "Layout alignment settings",
+                        "ResourceKeySelectors": 
+                        [
+                            "^landmark_alignment_settings$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "DetectionParameters",
+                "DisplayName": "Detection parameters",
+                "Type": "UI",
+                "InputDatasetTypes":
+                [
+                    "Flat"
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://d2db-algo.{1}",
+        "Name": "D2dbDefectDetectionModuleALGO",
+        "Submodules":
+        [
+            {
+                "Name": "DefectDetection",
+                "DisplayName": "Defect detection",
+                "UrlTemplate": "{0}/api/v1/detectDefects",
+                "Type": "Algo",
+                "RequiredParameters": "D2DBDefectDetection.json",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "LayoutSettings",
+                        "DisplayName": "Layout settings",
+                        "ResourceKeySelectors": 
+                        [
+                            "^layout_settings$"
+                        ]
+                    },
+                    {
+                        "Name": "AlignmentSettings",
+                        "DisplayName": "Layout alignment settings",
+                        "ResourceKeySelectors": 
+                        [
+                            "^landmark_alignment_settings$"
+                        ]
+                    },
+                    {
+                        "Name": "Annotations",
+                        "DisplayName": "Annotations",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^CareAreaAnnotations$",
+                            "^ExcludedAreaAnnotations$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Defects",
+                        "DisplayName": "Defects metadata",
+                        "ResourceKeySelectors": 
+                        [
+                            "^defects_metadata$",
+                            "^defects_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                            "^defects_csv$",
+                            "^defects_detection_results$",
+                            "^defects_result_output$"
+                        ]
+                    },
+                    {
+                        "Name": "DetectionExecution",
+                        "DisplayName": "Detection execution",
+                        "ResourceKeySelectors": 
+                        [
+                            "^detection_execution$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://defectdetection-ui.{1}",
+        "Name": "DetectionParametersModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "DetectionParameters",
+                "DisplayName": "Detection parameters",
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Annotations",
+                        "DisplayName": "Annotations",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^CareAreaAnnotations$",
+                            "^ExcludedAreaAnnotations$"
+                        ]
+                    },
+                    {
+                        "Name": "SampleArea",
+                        "DisplayName": "Sample area",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^MFOVSamples$"
+                        ]
+                    },
+                    {
+                        "Name": "ExcludedArea",
+                        "DisplayName": "Excluded area",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^MFOVExcluded$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "TrainedModelId",
+                        "DisplayName": "Id of the selected model",
+                        "ResourceKeySelectors": 
+                        [
+                            "^detection_model_id$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "DefectDetectionResults",
+                "DisplayName": "Detection results",
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Annotations",
+                        "DisplayName": "Annotations",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^CareAreaAnnotations$",
+                            "^ExcludedAreaAnnotations$"
+                        ]
+                    },
+                    {
+                        "Name": "SampleArea",
+                        "DisplayName": "Sample area",
+                        "ResourceKeySelectors":
+                        [
+                             "^MFOVSamples$"
+                        ]
+                    },
+                    {
+                        "Name": "ExcludedArea",
+                        "DisplayName": "Excluded area",
+                        "ResourceKeySelectors":
+                        [
+                            "^MFOVExcluded$"
+                        ]
+                    },
+                    {
+                        "Name": "Defects",
+                        "DisplayName": "Defects metadata",
+                        "ResourceKeySelectors": 
+                        [
+                            "^defects_metadata$",
+                            "^defects_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                            "^defects_csv$",
+                            "^defects_detection_results$",
+                            "^defects_result_output$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "ModelSelection",
+                "DisplayName": "Model selection",
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "SelectedModelID",
+                        "DisplayName": "Selected model id",
+                        "ResourceKeySelectors":
+                        [
+                            "^selectedModel$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "ModelTraining",
+                "DisplayName": "Model training",
+                "RequiredParameters": "DetectionParameters.json",
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Annotations",
+                        "DisplayName": "Annotations",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^CareAreaAnnotations$",
+                            "^ExcludedAreaAnnotations$"
+                        ]
+                    },
+                    {
+                        "Name": "SampleArea",
+                        "DisplayName": "Sample area",
+                        "ResourceKeySelectors":
+                        [
+                            "^MFOVSamples$"
+                        ]
+                    },
+                    {
+                        "Name": "ExcludedArea",
+                        "DisplayName": "Excluded area",
+                        "ResourceKeySelectors" :
+                        [
+                            "^MFOVExcluded$"
+                        ]
+                    },
+                    {
+                        "Name": "SelectedModelID",
+                        "DisplayName": "Selected model id",
+                        "ResourceKeySelectors":
+                        [
+                            "^selectedModel$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "TuneThresholds",
+                "DisplayName": "Fine tune thresholds",
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Annotations",
+                        "DisplayName": "Annotations",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^CareAreaAnnotations$",
+                            "^ExcludedAreaAnnotations$"
+                        ]
+                    },
+                    {
+                        "Name": "SampleArea",
+                        "DisplayName": "Sample area",
+                        "ResourceKeySelectors":
+                        [
+                            "^MFOVSamples$"
+                        ]
+                    },
+                    {
+                        "Name": "ExcludedArea",
+                        "DisplayName": "Excluded area",
+                        "ResourceKeySelectors":
+                        [
+                            "^MFOVExcluded$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "TrainedModelId",
+                        "DisplayName": "Id of the selected model",
+                        "ResourceKeySelectors":
+                        [
+                            "^detection_model_id$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://x1-framework.{1}",
+        "Name": "DetectionParametersModuleALGO",
+        "Submodules":
+        [
+            {
+                "Name": "ExportDetectionSnippets",
+                "DisplayName": "Detection results",
+                "UrlTemplate": "{0}/api/v1/export",
+                "Type": "Algo",
+                "InputDatasetTypes": 
+                [
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Defects",
+                        "DisplayName": "Defects metadata",
+                        "ResourceKeySelectors": 
+                        [
+                            "^defects_metadata$",
+                            "^defects_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                            "^defects_csv$",
+                            "^defects_result_output$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "DefectSnippets",
+                        "DisplayName": "Archive with detected defect snippets",
+                        "ResourceKeySelectors":
+                        [
+                            "^defectssnippets_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}.zip$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://defectclassification-ui.{1}",
+        "Name": "DefectClassificationModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "DefectClassification",
+                "DisplayName": "Defect classification",
+                "Type": "UI",
+                "RequiredParameters": "DefectClassification.json",
+                "InputDatasetTypes": 
+                [
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Defects",
+                        "DisplayName": "Defects metadata",
+                        "ResourceKeySelectors": 
+                        [
+                            "^defects_metadata$",
+                            "^defects_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                            "^defects_csv$",
+                            "^defects_detection_results$",
+                            "^defects_result_output$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://anomalydetection-algo.{1}",
+        "Name": "DefectDetectionModuleALGO",
+        "RequiredParameters": "DefectDetection.json",
+        "Submodules":
+        [
+            {
+                "Name": "DefectDetection",
+                "DisplayName": "Defect detection",
+                "UrlTemplate": "{0}/api/v1/detection",
+                "Type": "Algo",
+                "InputDatasetTypes":
+                [
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Annotations",
+                        "DisplayName": "Annotations",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^CareAreaAnnotations$",
+                            "^ExcludedAreaAnnotations$"
+                        ]
+                    },
+                    {
+                        "Name": "ReconstructionResult",
+                        "DisplayName": "Reconstruction results",
+                        "ResourceKeySelectors":
+                        [
+                            "^recon_results$"
+                        ]
+                    },
+                    {
+                        "Name": "TrainedModelId",
+                        "DisplayName": "Id of the selected model",
+                        "ResourceKeySelectors": 
+                        [
+                            "^detection_model_id$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Defects",
+                        "DisplayName": "Defects metadata",
+                        "ResourceKeySelectors": 
+                        [
+                            "^defects_metadata$",
+                            "^defects_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                            "^defects_csv$",
+                            "^defects_detection_results$",
+                            "^defects_result_output$"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Reconstruction",
+                "DisplayName": "Reconstruction",
+                "UrlTemplate": "{0}/api/v1/reconstruction",
+                "Type": "Algo",
+                "InputDatasetTypes":
+                [
+                    "Flat",
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Annotations",
+                        "DisplayName": "Annotations",
+                        "ResourceKeySelectors" : 
+                        [
+                            "^CareAreaAnnotations$",
+                            "^ExcludedAreaAnnotations$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "ReconstructionResult",
+                        "DisplayName": "Reconstruction results",
+                        "ResourceKeySelectors":
+                        [
+                            "^recon_results$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://fba-crosssection-ui.{1}",
+        "Name": "FBCrossSectionAlignmentModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "FBCrossSectionAlignment",
+                "DisplayName": "Fiducial based cross section alignment",
+                "AutoExecution":
+                {
+                    "ModuleUrlTemplate": "{0}://fiducialbasedalignmentcross-algo.{1}",
+                    "SubmoduleUrlTemplate": "{0}/api/v1/execute"
+                },
+                "Type": "UI",
+                "RequiredParameters": "FBCrossSectionAlignment.json",
+                "InputDatasetTypes": 
+                [ 
+                    "MultiChannelVolume"
+                ],
+                "OutputDatasetType": "MultiChannelVolume"
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://fiducialbasedalignment-ui.{1}",
+        "Name": "FiducialBasedAlignmentModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "FiducialBasedAlignment",
+                "DisplayName": "Fiducial based alignment",
+                "AutoExecution":
+                {
+                    "ModuleUrlTemplate": "{0}://fiducialbasedalignment-algo.{1}",
+                    "SubmoduleUrlTemplate": "{0}/api/v1/execute"
+                },
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "MultiChannelVolume"
+                ],
+                "OutputDatasetType": "SingleChannelVolume"
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://structurefinealignment-ui.{1}",
+        "Name": "StructureFineAlignmentModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "StructureFineAlignment",
+                "DisplayName": "Structure fine alignment",
+                "Type":"UI",
+                "RequiredParameters": "StructureFineAlignment.json",
+                "AutoExecution":
+                {
+                    "ModuleUrlTemplate": "{0}://structurefinealignment-algo.{1}",
+                    "SubmoduleUrlTemplate": "{0}/api/v1/execute"
+                },
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "OutputDatasetType": "SingleChannelVolume"
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://3dpreview-ui.{1}",
+        "Name": "VolumePreviewModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "VolumePreview",
+                "DisplayName": "3D volume preview",
+                "CanSkip": true,
+                "Type": "UI",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume",
+                    "MultiChannelVolume"
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl":"{0}://regionsextraction-ui.{1}",
+        "Name":"RegionsExtractionModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "RegionsExtraction",
+                "DisplayName": "Regions extraction",
+                "Type": "UI",
+                "RequiredParameters": "RegionsExtraction.json",
+                "AutoExecution":
+                {
+                    "ModuleUrlTemplate": "{0}://regionsextraction-algo.{1}",
+                    "SubmoduleUrlTemplate": "{0}/api/v1/execute"
+                },
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Regions",
+                        "DisplayName": "Found regions of dataset",
+                        "ResourceKeySelectors":
+                        [
+                            "^regions$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://wordlinetracing-algo.{1}",
+        "Name": "WordLineTracingModuleALGO",
+        "Submodules":
+        [
+            {
+                "Name": "WordLineTracing",
+                "DisplayName": "Word line tracing",
+                "UrlTemplate": "{0}/api/v1/execute",
+                "Type":"Algo",
+                "RequiredParameters": "WordLineTracing.json",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Regions",
+                        "DisplayName": "Found regions of dataset",
+                        "ResourceKeySelectors":
+                        [
+                            "^regions$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Wordlines",
+                        "DisplayName": "Wordlines",
+                        "ResourceKeySelectors":
+                        [
+                            "^wordlines$"
+                        ]
+                    },
+                    {
+                        "Name": "WordlinePitchMean",
+                        "DisplayName": "Wordline pitch mean",
+                        "ResourceKeySelectors":
+                        [
+                            "^wordline_pitch_mean$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://wordlinetracing-ui.{1}",
+        "Name": "WordLineTracingModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "WordLineTracing",
+                "DisplayName": "Word line tracing",
+                "Type":"UI",
+                "RequiredParameters": "WordLineTracing.json",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Regions",
+                        "DisplayName": "Found regions of dataset",
+                        "ResourceKeySelectors":
+                        [
+                            "^regions$"
+                        ]
+                    }
+                ],
+                "OutputResources":
+                [
+                    {
+                        "Name": "Wordlines",
+                        "DisplayName": "Wordlines",
+                        "ResourceKeySelectors":
+                        [
+                            "^wordlines$"
+                        ]
+                    },
+                    {
+                        "Name": "WordlinePitchMean",
+                        "DisplayName": "Wordline pitch mean",
+                        "ResourceKeySelectors":
+                        [
+                            "^wordline_pitch_mean$"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "BaseUrl": "{0}://virtualsliceextraction-algo.{1}",
+        "Name": "VirtualSliceExtractionModuleALGO",
+        "Submodules":
+        [
+            {
+                "Name": "VirtualSliceExtraction",
+                "DisplayName": "Virtual slice extraction",
+                "UrlTemplate": "{0}/api/v1/execute",
+                "Type": "Algo",
+                "RequiredParameters": "VirtualSliceExtraction.json",
+                "InputDatasetTypes": 
+                [ 
+                    "SingleChannelVolume"
+                ],
+                "InputResources":
+                [
+                    {
+                        "Name": "Wordlines",
+                        "DisplayName": "Wordlines",
+                        "ResourceKeySelectors":
+                        [
+                            "^wordlines$"
+                        ]
+                    },
+                    {
+                        "Name": "WordlinePitchMean",
+                        "DisplayName": "Wordline pitch mean",
+                        "ResourceKeySelectors":
+                        [
+                            "^wordline_pitch_mean$"
+                        ]
+                    }
+                ],
+                "OutputDatasetType": "SingleChannelVolume"
+            }
+        ]
+    },
+    {
+        "Name": "ContrastCorrectionModuleALGO",
+        "BaseUrl": "{0}://contrastcorrection-algo.{1}",
+        "Submodules":
+        [
+            {
+                "Name": "ContrastCorrection",
+                "DisplayName": "Contrast correction",
+                "UrlTemplate": "{0}/api/v1/execute",
+                "Type": "Algo",
+                "RequiredParameters": "ContrastCorrection.json",
+                "InputDatasetTypes":
+                [
+                    "Flat"
+                ],
+                "OutputDatasetType": "Flat"
+            }
+        ]
+    },
+    {
+        "Name": "ScanDistortionModuleALGO",
+        "BaseUrl": "{0}://scandistortioncorrection-algo.{1}",
+        "Submodules":
+        [
+            {
+                "Name": "ScanDistortion",
+                "DisplayName": "Scan distortion",
+                "UrlTemplate": "{0}/api/v1/execute",
+                "Type": "Algo",
+                "InputDatasetTypes":
+                [
+                    "Flat"
+                ],
+                "OutputDatasetType": "Flat"
+            }
+        ]
+    },
+    {
+        "BaseUrl":"{0}://codinginterface-ui.{1}",
+        "Name":"CodingInterfaceModuleUI",
+        "Submodules":
+        [
+            {
+                "Name": "CodingInterface",
+                "DisplayName": "Coding interface",
+                "Type": "UI"
+            }
+        ]
+    }
+]
